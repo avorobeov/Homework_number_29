@@ -15,7 +15,7 @@ namespace Homework_number_29
             Console.ReadLine();
         }
 
-        private static void DrawBar(int percentFilling, int maxValue, ConsoleColor color, int position,char symbol)
+        private static void DrawBar(int percentFilling, int maxValue, ConsoleColor color, int position, char symbol)
         {
             ConsoleColor defaultColor = Console.BackgroundColor;
             string bar = "";
