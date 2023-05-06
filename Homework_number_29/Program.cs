@@ -10,24 +10,27 @@ namespace Homework_number_29
     {
         static void Main(string[] args)
         {
-            DrawBar(40, 10, ConsoleColor.Red, 2, '_');
+            char symbolFiller = '#';
+            char symbolEmptiness = '_';
+            int percentFilling = 40;
+            int maxValueOfCell = 10;
+            int positionY = 2;
+
+            DrawBar(percentFilling, maxValueOfCell, ConsoleColor.Red, positionY, symbolEmptiness, symbolFiller);
 
             Console.ReadLine();
         }
 
-        private static void DrawBar(int percentFilling, int maxValue, ConsoleColor color, int position, char symbol)
+        private static void DrawBar(int percentFilling, int maxValueOfCell, ConsoleColor color, int positionY, char symbolEmptiness, char symbolFiller)
         {
             ConsoleColor defaultColor = Console.BackgroundColor;
             string bar = "";
-            double divisor = 100.0;
-            int filling = Convert.ToInt32(maxValue * (percentFilling / divisor));
+            double maxPercent = 100.0;
+            int filling = Convert.ToInt32(maxValueOfCell * (percentFilling / maxPercent));
 
-            for (int i = 0; i < filling; i++)
-            {
-                bar += '#';
-            }
+            bar = GetBar(filling, bar, symbolFiller);
 
-            Console.SetCursorPosition(0, position);
+            Console.SetCursorPosition(0, positionY);
             Console.Write('[');
             Console.BackgroundColor = color;
             Console.Write(bar);
@@ -35,12 +38,19 @@ namespace Homework_number_29
 
             bar = "";
 
-            for (int i = filling; i < maxValue; i++)
+            bar = GetBar(maxValueOfCell, bar, symbolEmptiness, filling);
+
+            Console.Write(bar + ']');
+        }
+
+        private static string GetBar(int endIndex, string bar, char symbol, int startIndex = 0)
+        {
+            for (int i = startIndex; i < endIndex; i++)
             {
                 bar += symbol;
             }
 
-            Console.Write(bar + ']');
+            return bar;
         }
     }
 }
